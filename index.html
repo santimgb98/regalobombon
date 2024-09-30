@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celebración de Aniversario</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #000;
+        color: #fff;
+        font-family: "Arial", sans-serif;
+        margin: 0;
+      }
+      #boton {
+        padding: 20px 40px;
+        font-size: 24px;
+        color: white;
+        background-color: rgb(22, 224, 160);
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      #boton:hover {
+        background-color: darkred;
+      }
+      #imagenes {
+        display: none;
+        margin-top: 20px;
+        text-align: center;
+      }
+      #texto {
+        display: none;
+        font-size: 32px;
+        margin-top: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid #fff;
+        animation: typing 10s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: white;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="contenedor">
+      <button id="boton">Pulsa aquí bombón</button>
+      <div id="imagenes"></div>
+      <div id="texto"></div>
+    </div>
+
+    <script>
+      // Aquí puedes añadir las rutas de tus imágenes
+      const imagenes = [
+        "img/a.jpg",
+        "img/b.jpg",
+        "img/c.jpg",
+        "img/d.jpg",
+        "img/e.jpg",
+        "img/f.jpg",
+        "img/g.jpg",
+        "img/h.jpg",
+        "img/i.jpg",
+        "img/j.jpg",
+        "img/k.jpg",
+        "img/l.jpg",
+        "img/m.jpg",
+      ];
+
+      const boton = document.getElementById("boton");
+      const contenedorImagenes = document.getElementById("imagenes");
+      const texto = document.getElementById("texto");
+
+      boton.onclick = () => {
+        boton.style.display = "none";
+        contenedorImagenes.style.display = "block";
+        mostrarImagenes();
+      };
+
+      let indiceImagen = 0;
+
+      function mostrarImagenes() {
+        if (indiceImagen < imagenes.length) {
+          contenedorImagenes.innerHTML = `<img src="${imagenes[indiceImagen]}" style="width: 100%; max-width: 1000px;"/>`;
+          indiceImagen++;
+          setTimeout(mostrarImagenes, 3500); // Cambia la imagen cada 3.5 segundos
+        } else {
+          mostrarTexto();
+        }
+      }
+
+      function mostrarTexto() {
+        contenedorImagenes.style.display = "none";
+        texto.innerHTML =
+          "Gracias mi amorcín por este primer añito juntos, te quiero mucho mucho muchísimo";
+        texto.style.display = "block";
+        texto.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          window.close(); // Cierra la página después de 10 segundos
+        }, 15000); // Cambia el tiempo según la longitud del texto
+      }
+    </script>
+  </body>
+</html>
